@@ -136,7 +136,7 @@
       <p>We introduce Vamos, a simple yet effective framework to utilize LLMs to unify video dynamic modeling tasks, including comprehending historical content (video question answering, VQA) and future prediction (long-term action anticipation, LTA). Vamos flexibly unifies distributed visual features and textual video representations including discrete action labels and free-form video captions.</p>
       <div class="container is-max-desktop">
         <div class="hero-body">
-          <img src="static/images/model_vamos.png" alt="Two-Stage GCPC" height="100%"/>
+          <img src="static/images/model_vamos.png" alt="Vamos Model" height="100%"/>
         </div>
       </div>
       </div>
@@ -152,10 +152,10 @@
     <div class="container is-max-desktop">
       <div class="content">
       <h2 class="title">Lightweight Token Selector</h2>
-      <p>Lightweight token selector picks one single token from the video sequence based on the task sequence.</p>
+      <p>To investigate the potential of compressing long input sequences and extracting keys element from the generated textual representations to probe the crucial information for downstream video understanding tasks, we introduce a lightweight token selector as an add-on module of Vamos. It pick one single token from the video sequence based on the task sequence. By applying the token selector to k segments of textual video representation, k tokens are finally selected as the compact input to the LLM for down-stream tasks. </p>
       <div class="container is-max-desktop">
         <div class="hero-body">
-          <img src="static/images/model_selector.png" alt="Two-Stage GCPC" height="80%"/>
+          <img src="static/images/model_selector.png" alt="Vamos selector" height="100%"/>
         </div>
       </div>
       </div>
@@ -168,20 +168,20 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
-      <h2 class="title">Vamos: Versatile Action Models</h2>
+      <h2 class="title">Visualization of Vamos Prediction and Manual Intervention</h2>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item">
          <!-- Your image here -->
-          <img src="static/images/model_vamos.png" alt="antmaze_score"/>
+          <img src="static/images/vis.png" alt="antmaze_score"/>
          <h2 class="subtitle has-text-centered">
-          Vamos can be applied to multiple video understanding tasks by performing sequence modeling
+          Vamos predictions and manual intervention.
          </h2>
        </div>
        <div class="item">
          <!-- Your image here -->
-         <img src="static/images/model_selector.png" alt="kitchen_score"/>
+         <img src="static/images/vis_token.png" alt="kitchen_score"/>
          <h2 class="subtitle has-text-centered">
-          Lightweight token selector pickS one single token from the video sequence based on the task sequence.
+          Predictions with token selector (to 40 tokens) and manual intervention.
          </h2>
        </div>
    </div>
@@ -191,34 +191,6 @@
 <!--End Method -->
 
 
-<!-- TRL objectives-->
-<section class="hero is-small">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <h2 class="title">What Brings Helpful Trajectory Representations?</h2>
-        <p>
-        The two-stage framework offers flexibility on the choice of representation learning objectives, and allows us to study the impact of sequence modeling for trajectory representation learning and policy learning independently. We further explore how to properly utilize sequence modeling to generate helpful trajectory representations from the following aspects:
-        </p>
-        <br>
-        <p>
-          <b><em>Masking Patterns:</em></b> To study the impact of trajectory representation learning objectives on the resulting policy performance, we implement five different sequence modeling objectives by varying masking patterns in the first stage pretraining. We observe that predicitve coding objectives yields powerful trajectory representations about the future trajectory, which enhance the policy learning.
-        </p>
-        <img src="static/images/masking_patterns.png", alt="masking_patterns">
-        <br>
-        <p>
-          <b><em>Goal Conditioning:</em></b> We investigate whether goal conditioning (i.e. the goal input) in TrajNet is necessary or beneficial for learning trajectory representations. Goal conditioning is crucial for predictive coding objectives to properly encode expected long-term future.
-        </p>
-        <br>
-        <img src="static/images/goal_cond_antmaze.png", alt="goal conditioning">
-        <br>
-        <p>
-          <b><em>Comparison with Explicit Future:</em></b> In GCPC, the future trajectory information is stored in the goal-conditioned latent representation, which serves as a conditioning variable of the policy. We compare the latent future representation with explicit future sequence to study how the form of future would impact policy performance. We observe that the latent representation is a powerful future information carrier that can effectively improve the policy performance.
-        </p>
-    </div>
-  </div>
-</section>
-  <!--End TRL objectives -->
-
   <!-- Effectiveness-->
 <section class="hero is-small">
   <div class="hero-body">
@@ -227,30 +199,30 @@
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item">
          <!-- Your image here -->
-          <img src="static/images/antmaze_table.png" alt="antmaze_score"/>
+          <img src="static/images/egoschema.png" alt="antmaze_score"/>
          <h2 class="subtitle has-text-centered">
-          Average normalized scores on AntMaze
+          Egoschema VQA zero-shot Performance.
          </h2>
        </div>
        <div class="item">
          <!-- Your image here -->
-         <img src="static/images/kitchen_table.png" alt="kitchen_score"/>
+         <img src="static/images/nextqa.png" alt="kitchen_score"/>
          <h2 class="subtitle has-text-centered">
-          Average normalized scores on FrankaKitchen
+          NeXT-QA benchmark. * denotes model using additional dataset during training.
          </h2>
        </div>
        <div class="item">
          <!-- Your image here -->
-         <img src="static/images/gym_table.png" alt="gym_score"/>
+         <img src="static/images/intentqa.png" alt="gym_score"/>
          <h2 class="subtitle has-text-centered">
-          Average normalized scores on Gym Locomotion
+          IntentQA benchmark.
         </h2>
       </div>
       <div class="item">
        <!-- Your image here -->
-       <img src="static/images/rliable_plot_antmaze.png" alt="antmaze_rliable"/>
+       <img src="static/images/ego4d_lta.png" alt="antmaze_rliable"/>
        <h2 class="subtitle has-text-centered">
-        Aggregate metrics with 95% Stratified Bootstrap CIs on AntMaze.
+        Ego4D LTA v2 test set.
        </h2>
      </div>
    </div>
@@ -264,7 +236,7 @@
     <div class="container is-max-desktop">
       <h2 class="title">Acknowledgements</h2>
       <p>
-        We appreciate all anonymous reviewers for their constructive feedback. We would like to thank Calvin Luo and Haotian Fu for their discussions and insights, and Tian Yun for the help on this project. This work is in part supported by Adobe, Honda Research Institute, Meta AI, Samsung Advanced Institute of Technology, and a Richard B. Salomon Faculty Research Award for C.S.
+        This work is supported by Honda Research Institute USA and Samsung Advanced Institute of Technology. We would like to thank Apoorv Khandelwal, Calvin Luo, David Isele, Songpo Li, and Tian Yun for their generous feedback on this work. Our research was conducted using computational resources at the Center for Computation and Visualization, Brown University.
       </p>
 </div>
 </div>
@@ -276,11 +248,7 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@inproceedings{zeng2023gcpc,
-  title={Goal-Conditioned Predictive Coding for Offline Reinforcement Learning},
-  author={Zeng, Zilai and Zhang, Ce and Wang, Shijie and Sun, Chen},
-  booktitle={Advances in Neural Information Processing Systems},
-  year={2023}
+      <pre><code>
 }</code></pre>
     </div>
 </section>
