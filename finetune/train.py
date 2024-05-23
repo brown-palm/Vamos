@@ -77,13 +77,11 @@ def get_args_parser():
 
 
 def main(args):
-    os.environ['WANDB_SILENT']="true"
     misc.init_distributed_mode(args)
     if misc.is_main_process():
         wandb_run=wandb.init(project=args.project_name, group="DDP", job_type="train", name = args.exp_name)
         wandb.define_metric("val/step")
         wandb.define_metric("val/*", step_metric="val/step")
-        
     else:
         wandb_run=None
 
