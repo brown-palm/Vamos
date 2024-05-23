@@ -116,3 +116,16 @@ torchrun --rdzv_endpoint 127.0.0.1:1234 --nproc_per_node 4 eval.py --model 8B --
 ## Acknowledgements
 
 This repo is built upon [LLaMA-Adapter](https://github.com/OpenGVLab/LLaMA-Adapter) and [Flipped-VQA](https://github.com/mlvlab/Flipped-VQA).
+
+## Citations
+```
+@misc{wang2023vamos,
+        title={Vamos: Versatile Action Models for Video Understanding}, 
+        author={Shijie Wang and Qi Zhao and Minh Quan Do and Nakul Agarwal and Kwonjoon Lee and Chen Sun},
+        year={2023},
+        eprint={2311.13627},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV}
+  }
+```
+
