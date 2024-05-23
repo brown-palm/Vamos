@@ -1,0 +1,7 @@
+.history/*
+finetune/checkpoint*
+finetune/log/*
+finetune/wandb/*
+finetune/data/*
+finetune/pretrained/*
+*__pycache__*
