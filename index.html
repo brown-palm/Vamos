@@ -117,8 +117,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            What makes good video representations for video understanding, such as anticipating future activities, or answering video-conditioned questions? While earlier approaches focus on end-to-end learning directly from video pixels, we propose to revisit text-based representations, such as discrete action labels, or free-form video captions, which are interpretable and can be directly consumed by large language models (LLMs). Intuitively, different video understanding tasks may require representations that are complementary and at different granularities. To this end, we propose versatile action models (Vamos), a learning framework powered by a large language model as the ``reasoner'', and can flexibly leverage visual embeddings, action labels, and free-form descriptions extracted from videos as its input. We evaluate Vamos on four complementary video understanding benchmarks, Ego4D, Next-QA, IntentQA, and EgoSchema, on its capability to model temporal dynamics, encode visual history, and perform reasoning. Surprisingly, we observe that text-based representations consistently achieve competitive performance on all benchmarks, and that visual embeddings provide marginal or no performance improvement, demonstrating the effectiveness of text-based video representation in the LLM era. We perform extensive ablation study and qualitative analysis to support our observations, and achieve state-of-the-art performance on three benchmarks.
-          </p>
+            What makes good representations for video understanding, such as anticipating future activities, or answering video-conditioned questions? While earlier approaches focus on end-to-end learning directly from video pixels, we propose to revisit text-based representations, such as general-purpose video captions, which are interpretable and can be directly consumed by large language models (LLMs). Intuitively, different video understanding tasks may require representations that are complementary and at different granularity. To this end, we propose versatile action models (Vamos), a learning framework powered by a large language model as the ``reasoner'', and can flexibly leverage visual embedding and free-form text descriptions as its input. To interpret the important text evidence for question answering, we generalize the concept bottleneck model to work with tokens and nonlinear models, which uses hard attention to select a small subset of tokens from the free-form text as inputs to the LLM reasoner. We evaluate Vamos on four complementary video understanding benchmarks, Ego4D, NeXT-QA, IntentQA, and EgoSchema, on its capability to model temporal dynamics, encode visual history, and perform reasoning. Surprisingly, we observe that text-based representations consistently achieve competitive performance on all benchmarks, and that visual embeddings provide marginal or no performance improvement, demonstrating the effectiveness of text-based video representation in the LLM era. We also qualitative demonstrate that our token bottleneck model can select relevant evidence from free-form text, support test-time intervention, and achieves 5x inference speedup while keeping a competitive question answering performance. Vamos achieves SoTA performance on all the four benchmarks. </p>
         </div>
       </div>
     </div>
@@ -151,11 +150,11 @@
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="content">
-      <h2 class="title">Lightweight Token Selector</h2>
+      <h2 class="title">Token Bottleneck Model</h2>
       <p>To investigate the potential of compressing long input sequences and extracting keys element from the generated textual representations to probe the crucial information for downstream video understanding tasks, we introduce a lightweight token selector as an add-on module of Vamos. It pick one single token from the video sequence based on the task sequence. By applying the token selector to k segments of textual video representation, k tokens are finally selected as the compact input to the LLM for down-stream tasks. </p>
       <div class="container is-max-desktop">
         <div class="hero-body">
-          <img src="static/images/TBM.png" alt="Vamos selector" height="100%"/>
+          <img src="static/images/TBM.png" alt="Vamos selector" weight="100%"/>
         </div>
       </div>
       </div>
