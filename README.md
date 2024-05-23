@@ -1,23 +1,31 @@
 # Vamos: Versatile Action Models for Video Understanding
+This repository contains the official implementation for the paper [Vamos: Versatile Action Models for Video Understanding](https://arxiv.org/abs/2311.13627), including codes to train Vamos on Video QA tasks (NeXT-QA, IntentQA, and Perception Test) and EgoSchema zero-shot evaluation.
+
+<div align="center">
+  <img src="asset/vamos.png" width="900px" />
+</div>
 
 ## Setup
 To install requirements, run:
 ```
-git clone git@github.com:honda-research-institute/Vamos.git
-cd Vamos/vamos
-mkdir pretrained
-mkdir data
+git clone git@github.com:brown-palm/Vamos.git
+cd Vamos
 conda create -n vamos python=3.8
 conda activate vamos
 sh setup.sh
 ```
 
-## Dataset & LLaMA Preparation
-
-You can download our preprocessed datasets (NExT-QA, IntentQA, Perception Test) at [here](https://drive.google.com/file/d/1srpMKshuNZV0w9wz2QkX9w-t55RU0C5j/view?usp=sharing). Put them in ```./data```. Also, you can download original LLaMA at [here](https://github.com/facebookresearch/llama/tree/llama_v1), and put the checkpoint in ```./pretrained```. 
+## Video QA Dataset & LLaMA Preparation to Train Vamos
+All the codes for training Vamos for video QA tasks are under the `finetune` folder.
+```
+cd finetune
+mkdir pretrained
+mkdir data
+```
+You can download our preprocessed datasets (NExT-QA, IntentQA, Perception Test) at [here](https://drive.google.com/file/d/1srpMKshuNZV0w9wz2QkX9w-t55RU0C5j/view?usp=sharing). Put them in ```data```. Also, you can download original LLaMA at [here](https://github.com/facebookresearch/llama/tree/llama_v1), and put the checkpoint in ```pretrained```.
 
 ```
-./pretrained
+finetune/pretrained
     |─ llama
     |  |─ 7B
     |  |   |─ consolidated.00.pth
@@ -29,7 +37,7 @@ You can download our preprocessed datasets (NExT-QA, IntentQA, Perception Test) 
     └─ llama3
         :
 
-./data
+finetune/data
    |─ nextqa
    |   |─ train.csv
    |   |─ val.csv
@@ -52,6 +60,7 @@ You can download our preprocessed datasets (NExT-QA, IntentQA, Perception Test) 
 ```
 
 ## Training Vamos
+After preparing the datasets and LLaMA weights, excute the following codes under `finetune` folder. For pure visual representation, 40G A100/A6000 is recommended, for text and text + vision, 80G A100 is recommended. `--batch_size` and `--accum_iter` can be adjusted according to GPU number and memory size.
 
 ### NExT-QA
 
@@ -93,10 +102,10 @@ torchrun --rdzv_endpoint 127.0.0.1:1234 --nproc_per_node 4 train.py --model 8B -
 ```
 
 ## Pretrained checkpoints
-Vamos pretrained checkpoints with LLaMA3: [NeXT-QA](https://drive.google.com/file/d/1MXBufOEfz-BXQqZ0z6DlQImvVUZzsk0X/view?usp=drive_link), [IntentQA](https://drive.google.com/file/d/1Ibd8NUH6YrBAu8ACokJUfu84CkR6h4ZG/view?usp=drive_link), and [Perception Test](https://drive.google.com/file/d/1340nI717sogYLrLkSI6eEiBuU97qAqWT/view?usp=drive_link).
+Pretrained Vamos-LLaMA3 checkpoints are provided: [NeXT-QA](https://drive.google.com/file/d/1MXBufOEfz-BXQqZ0z6DlQImvVUZzsk0X/view?usp=drive_link), [IntentQA](https://drive.google.com/file/d/1Ibd8NUH6YrBAu8ACokJUfu84CkR6h4ZG/view?usp=drive_link), and [Perception Test](https://drive.google.com/file/d/1340nI717sogYLrLkSI6eEiBuU97qAqWT/view?usp=drive_link).
 
 ## Evaluation
-From the training command, simply replace ```train.py``` to ```eval.py``` and add ```--resume ./your/checkpoint.pth```, for example:
+From the training command, simply replace ```train.py``` to ```eval.py``` and add ```--resume your/checkpoint.pth```, for example:
 
 
 ```
