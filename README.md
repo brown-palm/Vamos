@@ -1,6 +1,10 @@
 # Vamos: Versatile Action Models for Video Understanding
 This repository contains the official implementation for the paper [Vamos: Versatile Action Models for Video Understanding](https://arxiv.org/abs/2311.13627), including codes to train Vamos on Video QA tasks (NeXT-QA, IntentQA, and Perception Test) and EgoSchema zero-shot evaluation.
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/vamos-versatile-action-models-for-video/video-question-answering-on-next-qa)](https://paperswithcode.com/sota/video-question-answering-on-next-qa?p=vamos-versatile-action-models-for-video) [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/vamos-versatile-action-models-for-video/zero-shot-video-question-answer-on-egoschema-1)](https://paperswithcode.com/sota/zero-shot-video-question-answer-on-egoschema-1?p=vamos-versatile-action-models-for-video)
+
+
+
 <div align="center">
   <img src="asset/vamos.png" width="900px" />
 </div>
