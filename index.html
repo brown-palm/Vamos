@@ -145,16 +145,16 @@
 <!--End Method -->
 
 
-<!-- Method: Token selector-->
+<!-- Method: TBM-->
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="content">
       <h2 class="title">Token Bottleneck Model</h2>
-      <p>To investigate the potential of compressing long input sequences and extracting keys element from the generated textual representations to probe the crucial information for downstream video understanding tasks, we introduce a lightweight token selector as an add-on module of Vamos. It pick one single token from the video sequence based on the task sequence. By applying the token selector to k segments of textual video representation, k tokens are finally selected as the compact input to the LLM for down-stream tasks. </p>
+      <p>We propose the token bottleneck model (TBM). Inspired by the concept bottleneck models (CBM), which achieve interpretable object classification by inspecting the weights of the learned linear classifier (left). Unlike CBM, Vamos does not require pre-defining a list of concepts. It directly works with tokenized text inputs. To provide input tokens to the reasoning model (an LLM), we leverage hard attention to generate binary rather than continuous weights (middle). The token bottleneck can be interpreted directly. It can also be intervened with human inputs (right), or augmented with residual visual information. </p>
       <div class="container is-max-desktop">
         <div class="hero-body">
-          <img src="static/images/TBM.png" alt="Vamos selector" weight="100%"/>
+          <img src="static/images/TBM.png" alt="TBM" weight="100%"/>
         </div>
       </div>
       </div>
