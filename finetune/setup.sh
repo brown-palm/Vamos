@@ -10,3 +10,4 @@ pip install pysrt
 pip install tiktoken
 pip install wandb
 pip install blobfile
+pip install openai
