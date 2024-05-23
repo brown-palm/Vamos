@@ -111,11 +111,24 @@ Pretrained Vamos-LLaMA3 checkpoints are provided: [NeXT-QA](https://drive.google
 ## Evaluation
 From the training command, simply replace ```train.py``` to ```eval.py``` and add ```--resume your/checkpoint.pth```, for example:
 
-
 ```
 # Eval NeXT-QA with pure text representation
 torchrun --rdzv_endpoint 127.0.0.1:1234 --nproc_per_node 4 eval.py --model 8B --max_seq_len 1200 --batch_size 2 --epochs 10 --warmup_epochs 2 --bias 3.5 --tau 100. --max_feats 10 --dataset nextqa --blr 9e-2 --weight_decay 0.14 --accum_iter 8 --use_cap --llama_model_path ./pretrained/llama3/ --output_dir ./checkpoint/nextqa_cap_ep10_llama3 --project_name nextqa --resume checkpoint/nextqa_cap_13b_llama3.pth
 ```
+
+## Zero-shot Video QA on EgoSchema
+All the codes for  are under the `zero_shot_egoschema` folder.
+```
+# zs inference with OpenAI GPTs (GPT-4o by default)
+python egoschema_zs.py --output_name gpt4o_result.json --openai_key {your-openai-key}
+
+# evaluate on the 500 subset
+python eval_subset.py --pred_file gpt4o_result.json
+
+# generate submission file to eval the full set
+python gen_submission.py --pred_file gpt4o_result.json
+```
+
 
 ## Acknowledgements
 

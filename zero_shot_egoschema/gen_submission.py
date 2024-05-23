@@ -4,7 +4,6 @@ import pandas as pd
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--pred_file', type=str, default='gpt4o_result.json', help='Path to the generated answers')
-parser.add_argument('--submission_name', type=str, default='submission_gpt4o_result', help='Name of the submission file')
 args = parser.parse_args()
 
 def generate_submission(uid_to_answer_map, default_blank_answer):
@@ -57,6 +56,6 @@ for q, a in zip(questions, answers):
 # Generate the submission dictionary
 submission_dict = generate_submission(uid_to_answer, default_blank_answer=3)
 df = pd.DataFrame(submission_dict.items(), columns=['q_uid', 'answer'])
-output_file = "output/" + args.submission_name + ".csv"
+output_file = "output/submission_" + args.pred_file.split('.')[0] + ".csv"
 print("save submission file to: ", output_file)
 df.to_csv(output_file, index=False)
